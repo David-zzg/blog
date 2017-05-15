@@ -1,0 +1,1 @@
+今天使用electron加载一个线上项目，发现项目报错，jquery未定义。然而在network中jquery已经下载。而且其他js加载正常。后来查看官方文档，在BrowserWindow的webPreferences发现了一个参数nodeIntegration。这个参数是是否允许项目中使用nodejs，默认为true。如果在项目中允许nodejs，存会生成全局函数 require，导致 jQuery 内部环境判断出问题，将以模块的方式输出，后来改这个参数为false，一切正常。
